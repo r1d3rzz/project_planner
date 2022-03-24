@@ -5,7 +5,7 @@
         <h2 @click="showDetail = !showDetail">{{ project.title }}</h2>
       </div>
       <div>
-        <i class="fas fa-solid fa-trash pjEditBtn"></i>
+        <i class="fas fa-solid fa-trash pjEditBtn" @click="deleteProject"></i>
         <i class="fas fa-solid fa-edit pjEditBtn"></i>
         <i class="fas fa-solid fa-check pjEditBtn"></i>
       </div>
@@ -19,9 +19,20 @@ export default {
   data() {
     return {
       showDetail: false,
+      api: "http://localhost:3000/projects/",
     };
   },
   props: ["project"],
+  methods: {
+    deleteProject() {
+      let deleteRoute = this.api + this.project.id;
+      fetch(deleteRoute, { method: "DELETE" })
+        .then(() => {
+          this.$emit("delete", this.project.id);
+        })
+        .catch((err) => console.log(err.message));
+    },
+  },
 };
 </script>
 
