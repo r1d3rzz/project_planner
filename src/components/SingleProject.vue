@@ -1,5 +1,5 @@
 <template>
-  <div class="project">
+  <div class="project" :class="{ complete: project.complete }">
     <div class="flexing">
       <div>
         <h2 @click="showDetail = !showDetail">{{ project.title }}</h2>
@@ -65,5 +65,8 @@ h2:hover {
 .pjEditBtn:hover {
   color: #777;
   cursor: pointer;
+}
+.complete {
+  border-left-color: green;
 }
 </style>
