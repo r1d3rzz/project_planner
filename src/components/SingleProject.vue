@@ -6,7 +6,9 @@
       </div>
       <div>
         <i class="fas fa-solid fa-trash pjEditBtn" @click="deleteProject"></i>
-        <i class="fas fa-solid fa-edit pjEditBtn"></i>
+        <router-link :to="{ name: 'editProject', params: { id: project.id } }">
+          <i class="fas fa-solid fa-edit pjEditBtn"></i>
+        </router-link>
         <i class="fas fa-solid fa-check pjEditBtn" @click="completeProject"></i>
       </div>
     </div>

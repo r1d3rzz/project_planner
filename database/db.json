@@ -1,8 +1,8 @@
 {
   "projects": [
     {
-      "title": "To do Vue",
-      "detail": "Vue Frame work",
+      "title": "This is My Projects New",
+      "detail": "This is project Detail",
       "complete": false,
       "id": 1
     }
