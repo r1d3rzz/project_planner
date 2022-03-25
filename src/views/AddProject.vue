@@ -1,14 +1,14 @@
 <template>
   <h1>Add Project</h1>
-  <form>
+  <form @submit.prevent="addProject">
     <div class="inputBox">
       <label for="title" class="projectTitle">Project Title</label>
-      <input type="text" id="title" class="projectInput" />
+      <input type="text" id="title" class="projectInput" v-model="title" />
     </div>
 
     <div class="inputBox">
       <label for="detail" class="projectTitle">Project Detail</label>
-      <input type="text" id="detail" class="projectInput" />
+      <input type="text" id="detail" class="projectInput" v-model="detail" />
     </div>
 
     <div class="btnBox">
@@ -18,7 +18,32 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      title: "",
+      detail: "",
+      api: "http://localhost:3000/projects",
+    };
+  },
+  methods: {
+    addProject() {
+      fetch(this.api, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: this.title,
+          detail: this.detail,
+          complete: false,
+        }),
+      })
+        .then(() => this.$router.push("/"))
+        .catch((err) => console.log(err.message));
+    },
+  },
+};
 </script>
 
 <style>
