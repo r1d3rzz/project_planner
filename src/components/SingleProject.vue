@@ -7,7 +7,7 @@
       <div>
         <i class="fas fa-solid fa-trash pjEditBtn" @click="deleteProject"></i>
         <i class="fas fa-solid fa-edit pjEditBtn"></i>
-        <i class="fas fa-solid fa-check pjEditBtn"></i>
+        <i class="fas fa-solid fa-check pjEditBtn" @click="completeProject"></i>
       </div>
     </div>
     <p v-if="showDetail">{{ project.detail }}</p>
@@ -31,6 +31,32 @@ export default {
           this.$emit("delete", this.project.id);
         })
         .catch((err) => console.log(err.message));
+    },
+    completeProject() {
+      let completeRoute = this.api + this.project.id;
+      /*
+        Update => 3 
+        1.method : "PATCH"
+        2.headers : "Content-Type" : "application/json"
+        3.body : JSON.stringify({
+          //repair data
+        }) 
+      */
+      fetch(completeRoute, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          complete: !this.project.complete,
+        }),
+      })
+        .then(() => {
+          this.$emit("complete", this.project.id);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     },
   },
 };
@@ -67,6 +93,6 @@ h2:hover {
   cursor: pointer;
 }
 .complete {
-  border-left-color: green;
+  border-left-color: yellow;
 }
 </style>
