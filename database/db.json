@@ -1,10 +1,16 @@
 {
   "projects": [
     {
-      "title": "This is My Projects New",
-      "detail": "This is project Detail",
+      "title": "This is project",
+      "detail": "this is project",
       "complete": false,
       "id": 1
+    },
+    {
+      "title": "Laravel project",
+      "detail": "laravel",
+      "complete": true,
+      "id": 2
     }
   ]
 }
